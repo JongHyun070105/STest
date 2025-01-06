@@ -58,7 +58,7 @@ public class UserController {
     {
         model.addAttribute("name", name);
         model.addAttribute("age", age);
-        personRepository.save(new Person(null,name,age));
+        personRepository.save(new Person(null,name,age)); // insert
         return "person";
     }
 
@@ -75,5 +75,11 @@ public class UserController {
         model.addAttribute("add", number1+number2);
         return "sum";
     }
-    
+
+    @GetMapping("/show")
+    public String show( Model model){
+        List<Person> persons = personRepository.findAll();
+        model.addAttribute("persons", persons);
+        return "show";
+    }   
 }
