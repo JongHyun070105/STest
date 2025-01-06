@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello spring boot</h1>
+    <div>
+        헬로:<span th:text = '${hello}'></span> 
+        스쿨:<span th:text = '${school}'></span>
+    </div>
+    <div th:if="${user == 'Kim'}">안녕 Kim</div>
+    <div th:if="${user == 'Lee'}">안녕 Lee</div>
+    <div>
+        <div th:switch="${user}">
+            <div th:case="Kim">Kim입니다</div>
+            <div th:case="Lee">Lee입니다</div>
+            <div th:case="Park">Park입니다</div>
+        </div>
+    </div>
+
+    <ul>
+        <li th:each="movie : ${movies}"> <!-- each는 반복-->
+            <img th:src="@{${movie.poster}}" width="300" height="400"/> <!--Thymeleaf image 경로 설정 하는법-->
+            <span th:text="${movie.title}"></span> - 
+            <span th:text="${movie.date}"></span> - 
+            <span th:text="${movie.actor}"></span> - 
+            <span th:text="${movie.director}"></span>
+        </li> 
+    </ul>
+</body>
+</html>
