@@ -3,15 +3,21 @@ package com.example.stest.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.stest.model.Movie;
+import com.example.stest.model.Person;
+import com.example.stest.repository.PersonRepository;
 
 import org.springframework.ui.Model;
 @Controller
 public class UserController {
+
+    @Autowired PersonRepository personRepository; 
+    
 
     @GetMapping("/")
     public String index( Model model){
@@ -52,6 +58,7 @@ public class UserController {
     {
         model.addAttribute("name", name);
         model.addAttribute("age", age);
+        personRepository.save(new Person(null,name,age));
         return "person";
     }
 
@@ -65,8 +72,7 @@ public class UserController {
                           @RequestParam("number2") int number2 , 
                           Model model)
     {
-        model.addAttribute("number1", number1);
-        model.addAttribute("number2", number2);
+        model.addAttribute("add", number1+number2);
         return "sum";
     }
     
