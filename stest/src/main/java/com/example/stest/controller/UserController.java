@@ -55,5 +55,19 @@ public class UserController {
         return "person";
     }
 
+    @GetMapping("/form2")
+    public String form2( Model model){
+        return "form2";
+    }    
+
+    @GetMapping("/sum")
+    public String sum( @RequestParam("number1") int number1 , 
+                          @RequestParam("number2") int number2 , 
+                          Model model)
+    {
+        model.addAttribute("number1", number1);
+        model.addAttribute("number2", number2);
+        return "sum";
+    }
     
 }
