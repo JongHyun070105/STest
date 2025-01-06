@@ -82,4 +82,32 @@ public class UserController {
         model.addAttribute("persons", persons);
         return "show";
     }   
+    
+    @GetMapping("/bmiform")
+    public String form3( Model model){
+        return "bmiform";
+    }   
+
+    @GetMapping("/bmiresult")
+    public String bmiresult(
+        @RequestParam("height") double height,
+        @RequestParam("weight") double weight,
+        Model model
+    ) {
+        model.addAttribute("height", height);
+        model.addAttribute("weight", weight);
+
+        double stdWeight = (height - 100) * 0.85;
+        double BMI = weight/stdWeight*100;
+        String result = "";
+        
+        if(BMI < 90) result = "저체중";
+        else if(BMI >= 90 && BMI < 110) result = "정상";
+        else if(BMI >= 110 && BMI < 120) result = "과체중";
+        else result = "비만";
+
+        model.addAttribute("result",result);
+        return "bmiresult";
+    }
 }
+

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p>키: <span th:text="${key}"></span></p>
+        <p>몸무게: <span th:text="${body}"></span></p>
+        <p>결과: <span th:text="${result}"></span></p>
+        <p><img th:src="${result}+'.jpg'"></p>
+    </div>
+</body>
+</html>
