@@ -42,5 +42,10 @@ public class UserController {
     @GetMapping("/form")
     public String form( Model model){
         return "form";
+    }    
+    
+    @GetMapping("/person")
+    public String person( Model model){
+        return "person";
     }
 }
