@@ -117,7 +117,7 @@ public class UserController {
         // return "bmiresult";
 
         
-        BmiCalc calc = new BmiCalc();
+        // BmiCalc calc = new BmiCalc();
         String result = calc.clacBMI(height, weight);
         model.addAttribute("height", height);
         model.addAttribute("weight", weight);
