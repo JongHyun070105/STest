@@ -10,14 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.stest.model.Movie;
 import com.example.stest.model.Person;
+import com.example.stest.myclass.BmiCalc;
 import com.example.stest.repository.PersonRepository;
 
 import org.springframework.ui.Model;
+
 @Controller
 public class UserController {
 
     @Autowired PersonRepository personRepository; 
-    
+    @Autowired BmiCalc calc;
+
+    // private final BmiCalc calcc;
+    // public UserController(BmiCalc clac){
+    //     this.calcc = calc;
+    // } 두번째 방법
 
     @GetMapping("/")
     public String index( Model model){
@@ -97,16 +104,24 @@ public class UserController {
         model.addAttribute("height", height);
         model.addAttribute("weight", weight);
 
-        double stdWeight = (height - 100) * 0.85;
-        double BMI = weight/stdWeight*100;
-        String result = "";
+        // double stdWeight = (height - 100) * 0.85;
+        // double BMI = weight/stdWeight*100;
+        // String result = "";
         
-        if(BMI < 90) result = "저체중";
-        else if(BMI >= 90 && BMI < 110) result = "정상";
-        else if(BMI >= 110 && BMI < 120) result = "과체중";
-        else result = "비만";
+        // if(BMI < 90) result = "저체중";
+        // else if(BMI >= 90 && BMI < 110) result = "정상";
+        // else if(BMI >= 110 && BMI < 120) result = "과체중";
+        // else result = "비만";
 
-        model.addAttribute("result",result);
+        // model.addAttribute("result",result);
+        // return "bmiresult";
+
+        
+        BmiCalc calc = new BmiCalc();
+        String result = calc.clacBMI(height, weight);
+        model.addAttribute("height", height);
+        model.addAttribute("weight", weight);
+        model.addAttribute("result", result);
         return "bmiresult";
     }
 }
